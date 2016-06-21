@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.fd.utils;
+package com.fd.utils;
 
 import java.io.InputStream;
 import java.lang.annotation.ElementType;
@@ -27,8 +27,8 @@ import java.util.regex.Pattern;
 
 import javax.naming.NamingException;
 
-import org.fd.constants.DbConstants;
-import org.fd.constants.JavaConstants;
+import com.fd.constants.DbConstants;
+import com.fd.constants.JavaConstants;
 
 /**
  * 
@@ -39,7 +39,7 @@ import org.fd.constants.JavaConstants;
  * @author SaMa.Han guoqiang.han@foxmail.com
  * @version 1.00.00
  * 
- *          <pre>
+ * <pre>
  * 修改记录
  *    修改后版本:     修改人：  	修改日期:     修改内容:
  * </pre>
@@ -333,8 +333,6 @@ public class DbUtil {
 
 	private static Object getValue(String columnName, String type, ResultSet rs) throws SQLException {
 		Object obj = null;
-		// System.out.println("name="+f.getName()+", type="+f.getType().getName()
-		// );
 		if (JavaConstants.INTEGER_TYPE.equals(type) || JavaConstants.INTEGER.equals(type)) {
 			obj = rs.getInt(columnName);
 		} else if (JavaConstants.LONG_TYPE.equals(type) || JavaConstants.LONG.equals(type)) {
@@ -356,9 +354,6 @@ public class DbUtil {
 		} else {
 			obj = rs.getObject(columnName);
 		}
-		// System.out.println("name="+f.getName()
-		// +", type="+f.getType().getName()+", value="+(obj == null ? "NULL" :
-		// obj.getClass())+",{"+columnName+":"+obj+"}");
 		return obj;
 	}
 
@@ -685,6 +680,30 @@ public class DbUtil {
 		return dataCount;
 	}
 
+	public static String getQueryTableColumnsSQL(String tableName) throws SQLException {
+		StringBuffer sb = new StringBuffer();
+		if (DbConstants.SQL_SERVER_07_OR_2000_DRIVER.equals(driver)) {
+			
+		} else if (DbConstants.SQL_SERVER_2005_OR_2008_DRIVER.equals(driver)) {
+			
+		} else if (DbConstants.MYSQL_DRIVER.equals(driver)) {
+			sb.append("select t.table_name, t.column_name, t.data_type, t.column_comment ");
+			sb.append("from information_schema.columns t where t.table_schema = database()");
+			sb.append(" and t.table_name = '").append(tableName).append("'");
+		} else if (DbConstants.ORACLE_DRIVER.equals(driver)) {
+			
+		} else if (DbConstants.DB2_DRIVER.equals(driver)) {
+			
+		} else if (DbConstants.SYSBASE_DRIVER.equals(driver)) {
+
+		} else if (DbConstants.INFOMIX_DRIVER.equals(driver)) {
+
+		} else if (DbConstants.POSTGRESQL_DRIVER.equals(driver)) {
+			
+		}
+		return sb.toString();
+	}
+	
 	/**
 	 * 属性字段的注释，用于标记该属性对应的数据库字段 例如：
 	 * 

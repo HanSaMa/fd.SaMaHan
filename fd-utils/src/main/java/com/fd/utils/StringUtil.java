@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.fd.utils;
+package com.fd.utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
  * @author SaMa.Han guoqiang.han@foxmail.com
  * @version 1.00.00
  * 
- *          <pre>
+ * <pre>
  * 修改记录
  *    修改后版本:     修改人：  	修改日期:     修改内容:
  * </pre>
@@ -30,7 +30,10 @@ public class StringUtil {
 	public static final String[] EMPTY_STRING_ARRAY = new String[0];
 	private static final Pattern INT_PATTERN = Pattern.compile("^\\d+$");
 	private static final Pattern NUMBER_PATTERN = Pattern.compile("-?[0-9]+.?[0-9]+");
-	public static final char UNDERLINE = '_';
+	public static final String UNDERLINE = "_";
+	public static final char UNDERLINE_CHAR = '_';
+	public static final char SPLIT_CHAR = ',';
+	public static final String SPLIT = ",";
 
 	public static boolean isBlank(String str) {
 		if (str == null || str.length() == 0)
@@ -354,7 +357,7 @@ public class StringUtil {
 		StringBuilder sb = new StringBuilder(len);
 		for (int i = 0; i < len; i++) {
 			char c = param.charAt(i);
-			if (c == UNDERLINE) {
+			if (c == UNDERLINE_CHAR) {
 				if (++i < len) {
 					sb.append(Character.toUpperCase(param.charAt(i)));
 				}
@@ -376,7 +379,7 @@ public class StringUtil {
 			return "";
 		}
 		StringBuilder sb = new StringBuilder(param);
-		Matcher mc = Pattern.compile("_").matcher(param);
+		Matcher mc = Pattern.compile(UNDERLINE).matcher(param);
 		int i = 0;
 		while (mc.find()) {
 			int position = mc.end() - (i++);
@@ -397,7 +400,7 @@ public class StringUtil {
 		if( strKeys==null || "".equals(strKeys) ){
 			return -1;
 		}
-		String[] arrKeys =strKeys.split(",");
+		String[] arrKeys = strKeys.split(SPLIT);
 		for(String strTemp : arrKeys){
 			int intIndexNew =strParam.indexOf(strTemp);
 			

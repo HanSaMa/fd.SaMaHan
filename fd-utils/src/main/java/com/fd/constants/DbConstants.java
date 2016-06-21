@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.fd.constants;
+package com.fd.constants;
 
 
 /**
@@ -13,7 +13,7 @@ package org.fd.constants;
  * @author SaMa.Han guoqiang.han@foxmail.com
  * @version 1.00.00
  * 
- *          <pre>
+ * <pre>
  * 修改记录
  *    修改后版本:     修改人：  	修改日期:     修改内容:
  * </pre>
