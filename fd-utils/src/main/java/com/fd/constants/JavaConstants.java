@@ -18,6 +18,7 @@ package com.fd.constants;
  * </pre>
  */
 public class JavaConstants {
+	public static final String BASE_PACKAGE = "java.lang.";
 	public static final String SHORT = "short";
 	public static final String SHORT_TYPE = "java.lang.Short";
 	public static final String INTEGER = "int";
@@ -34,4 +35,7 @@ public class JavaConstants {
 	public static final String BOOLEAN_TYPE = "java.lang.Boolean";
 	public static final String STRING_TYPE = "java.lang.String";
 	public static final String DATE_TYPE = "java.util.Date";
+	public static final String BYTE_ARRAY = "java.lang.byte[]";
+	public static final String BIGINTEGER_TYPE = "java.math.BigInteger";
+	public static final String BIGDECIMAL_TYPE = "java.math.BigDecimal";
 }

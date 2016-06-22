@@ -1,9 +1,13 @@
-package com.fd.utils;
+package com.fd.utils.midea;
 
 import java.util.Date;
 import java.util.List;
 
+import com.fd.constants.JavaConstants;
 import com.fd.entity.TableColumns;
+import com.fd.utils.DbUtil;
+import com.fd.utils.FileUtil;
+import com.fd.utils.StringUtil;
 
 /**
  * 
@@ -31,16 +35,16 @@ public class DbToBeanUtil {
 			List<TableColumns> columns = DbUtil.queryPlural(TableColumns.class, sql);
 			
 			StringBuffer main = new StringBuffer("package ").append(packageStr).append(";\n\n");
-			main.append("import java.io.Serializable;\n");
-			main.append("import javax.persistence.Id;\n");
-			main.append("import javax.persistence.Entity;\n");
-			main.append("import javax.persistence.Table;\n");
-			main.append("import javax.persistence.GeneratedValue;\n");
-			main.append("import javax.persistence.Column;\n");
-			main.append("\n/**\n *\n * <pre>\n * .\n * </pre>\n *\n * @autor SaMa.Han guoqiang.han@foxmail.com\n");
+			main.append("import com.midea.mdp.core.annotation.persistence.MdpEntity;\n");
+			main.append("import com.midea.mdp.core.annotation.persistence.MdpGeneratedValue;\n");
+			main.append("import com.midea.mdp.core.annotation.persistence.MdpGenerationType;\n");
+			main.append("import com.midea.mdp.core.annotation.persistence.MdpId;\n");
+			main.append("import com.midea.mdp.core.annotation.persistence.MdpTable;\n");
+			main.append("import com.midea.mdp.extend.entity.BaseEntity;\n");
+			main.append("\n/**\n *\n * <pre>\n * .\n * </pre>\n *\n * @autor ex_hangq guoqiang.han@partner.midea.com.cn\n");
 			main.append(" * @version 1.00.00\n *\n * <pre>\n * 修改记录\n * \t修改后版本：\t修改人：\t修改日期：\t修改内容： \n");
-			main.append(" * </pre>\n */\n@Entity\n@Table(name=\"").append(table.toUpperCase()).append("\")\n");
-			main.append("public class ").append(className).append(" implements Serializable {\n");
+			main.append(" * </pre>\n */\n@MdpEntity\n@MdpTable(name=\"").append(table.toUpperCase()).append("\")\n");
+			main.append("public class ").append(className).append(" extends BaseEntity {\n");
 			main.append("\tprivate static final long serialVersionUID = ").append(new Date().getTime()).append("L;\n\n");
 			
 			StringBuffer method = new StringBuffer();
@@ -49,12 +53,13 @@ public class DbToBeanUtil {
 			for (TableColumns column : columns) {
 				String columnName = StringUtil.underlineToCamel(column.getColumnName().toLowerCase());
 				String dataType = DbUtil.getJavaType(column.getDataType().toUpperCase());
+				dataType = dataType.replace(JavaConstants.BASE_PACKAGE, "");
 				//字段属性并添加注解
 				if(column.getIsPrimary()){
-					main.append("\t@Id\n");
-					main.append("\t@GeneratedValue(strategy=GenerationType.AUTO)\n");
+					main.append("\t@MdpId\n");
+					main.append("\t@MdpGenerationType(strategy=MdpGenerationType.AUTO)\n");
 				}
-				main.append("\t@Column(name=\"").append(column.getColumnName().toUpperCase()).append("\")\n");
+//				main.append("\t@Column(name=\"").append(column.getColumnName().toUpperCase()).append("\")\n");
 				main.append("\tprivate ").append(dataType).append(" ").append(columnName).append(";");
 				main.append("//").append(column.getDescription()).append("\n");
 				

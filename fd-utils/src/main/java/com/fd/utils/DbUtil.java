@@ -45,6 +45,7 @@ import com.fd.constants.JavaConstants;
  * </pre>
  */
 public class DbUtil {
+	private DbUtil(){}
 	private static String driver;
 
 	// private static DataSource ds = null;
@@ -312,7 +313,8 @@ public class DbUtil {
 		T obj = t.newInstance();
 		for (String col : columns) {
 			try {
-				Field f = t.getDeclaredField(col);
+				String columnName = StringUtil.underlineToCamel(col);
+				Field f = t.getDeclaredField(columnName);
 				f.setAccessible(true);
 				Object v = getValue(col, f.getType().getName(), rs);
 				f.set(obj, v);
@@ -687,7 +689,7 @@ public class DbUtil {
 		} else if (DbConstants.SQL_SERVER_2005_OR_2008_DRIVER.equals(driver)) {
 			
 		} else if (DbConstants.MYSQL_DRIVER.equals(driver)) {
-			sb.append("select t.table_name, t.column_name, t.data_type, t.column_comment ");
+			sb.append("select t.column_name, t.data_type, case t.column_key when 'PRI' then true else false end as is_primary, t.column_comment as description ");
 			sb.append("from information_schema.columns t where t.table_schema = database()");
 			sb.append(" and t.table_name = '").append(tableName).append("'");
 		} else if (DbConstants.ORACLE_DRIVER.equals(driver)) {
@@ -702,6 +704,65 @@ public class DbUtil {
 			
 		}
 		return sb.toString();
+	}
+	
+	public static String getJavaType(String dataType){
+		StringBuffer sb = new StringBuffer();
+		if (DbConstants.SQL_SERVER_07_OR_2000_DRIVER.equals(driver)) {
+			
+		} else if (DbConstants.SQL_SERVER_2005_OR_2008_DRIVER.equals(driver)) {
+			
+		} else if (DbConstants.MYSQL_DRIVER.equals(driver)) {
+			sb.append(getJavaMysqlType(dataType));
+		} else if (DbConstants.ORACLE_DRIVER.equals(driver)) {
+			
+		} else if (DbConstants.DB2_DRIVER.equals(driver)) {
+			
+		} else if (DbConstants.SYSBASE_DRIVER.equals(driver)) {
+
+		} else if (DbConstants.INFOMIX_DRIVER.equals(driver)) {
+
+		} else if (DbConstants.POSTGRESQL_DRIVER.equals(driver)) {
+			
+		}
+		return sb.toString();
+	}
+	
+	private static String getJavaMysqlType(String dataType){
+		switch (dataType) {
+			case "VARCHAR":
+			case "CHAR":
+			case "TEXT":
+				return JavaConstants.STRING_TYPE;
+			case "INTEGER":
+			case "ID":
+				return JavaConstants.LONG_TYPE;
+			case "BLOB":
+				return JavaConstants.BYTE_ARRAY;
+			case "BOOLEAN":
+			case "TINYINT":
+			case "SMALLINT":
+			case "MEDIUMINT":
+				return JavaConstants.INTEGER_TYPE;
+			case "BIT":
+				return JavaConstants.BOOLEAN_TYPE;
+			case "BIGINT":
+				return JavaConstants.LONG_TYPE;
+			case "FLOAT":
+				return JavaConstants.FLOAT_TYPE;
+			case "DOUBLE":
+				return JavaConstants.DOUBLE_TYPE;
+			case "DECIMAL":
+				return JavaConstants.BIGDECIMAL_TYPE;
+			case "DATE":
+			case "TIME":
+			case "DATETIME":
+			case "TIMESTAMP":
+			case "YEAR":
+				return JavaConstants.DATE_TYPE;
+			default:
+				return "";
+		}
 	}
 	
 	/**

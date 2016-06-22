@@ -3,10 +3,8 @@
  */
 package com.fd.utils;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,7 +30,6 @@ public class StringUtil {
 	private static final Pattern NUMBER_PATTERN = Pattern.compile("-?[0-9]+.?[0-9]+");
 	public static final String UNDERLINE = "_";
 	public static final char UNDERLINE_CHAR = '_';
-	public static final char SPLIT_CHAR = ',';
 	public static final String SPLIT = ",";
 
 	public static boolean isBlank(String str) {
@@ -201,31 +198,6 @@ public class StringUtil {
 			}
 		}
 		return sb == null ? src : sb.toString();
-	}
-
-	/**
-	 * 将字符串分割成数组
-	 * 
-	 * @param ch
-	 *            char.
-	 * @return string array.
-	 */
-	public static String[] split(String str, char ch) {
-		List<String> list = null;
-		char c;
-		int ix = 0, len = str.length();
-		for (int i = 0; i < len; i++) {
-			c = str.charAt(i);
-			if (c == ch) {
-				if (list == null)
-					list = new ArrayList<String>();
-				list.add(str.substring(ix, i));
-				ix = i + 1;
-			}
-		}
-		if (ix > 0)
-			list.add(str.substring(ix));
-		return list == null ? EMPTY_STRING_ARRAY : (String[]) list.toArray(EMPTY_STRING_ARRAY);
 	}
 
 	/**
@@ -431,11 +403,5 @@ public class StringUtil {
 	}
 
 	private StringUtil() {
-	}
-	
-	public static void main(String[] args){
-		
-		System.out.println(StringUtil.underlineToCamelSub("aa_bab_cbcc_ded"));
-		System.out.println(StringUtil.getIndexByKeys("aa,bb", "bbfff"));
 	}
 }
