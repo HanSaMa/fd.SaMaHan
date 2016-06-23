@@ -29,6 +29,7 @@ public class DbToBeanUtil {
 	public static void dbToBean(String tables, String packageStr) throws Exception{
 		String[] tableArr = tables.toLowerCase().split(StringUtil.SPLIT);
 		for (String table : tableArr) {
+			table = table.trim();
 			String className = StringUtil.underlineToCamel(table);
 			className = className.substring(0, 1).toUpperCase() + className.substring(1);
 			String sql = DbUtil.getQueryTableColumnsSQL(table.toUpperCase());
@@ -53,18 +54,18 @@ public class DbToBeanUtil {
 			for (TableColumns column : columns) {
 				String columnName = StringUtil.underlineToCamel(column.getColumnName().toLowerCase());
 				String dataType = DbUtil.getJavaType(column.getDataType().toUpperCase());
-				dataType = dataType.replace(JavaConstants.BASE_PACKAGE, "");
-				//字段属性并添加注解
-				if(column.getIsPrimary()){
-					main.append("\t@MdpId\n");
-					main.append("\t@MdpGenerationType(strategy=MdpGenerationType.AUTO)\n");
-				}
 //				main.append("\t@Column(name=\"").append(column.getColumnName().toUpperCase()).append("\")\n");
 				main.append("\tprivate ").append(dataType).append(" ").append(columnName).append(";");
 				main.append("//").append(column.getDescription()).append("\n");
 				
 				//getter/setter方法
 				String firstLetter = columnName.substring(0, 1).toUpperCase();
+				dataType = dataType.replace(JavaConstants.BASE_PACKAGE, "");
+				//字段属性并添加注解
+				if(column.getIsPrimary()){
+					method.append("\t@MdpId\n");
+					method.append("\t@MdpGeneratedValue(strategy=MdpGenerationType.AUTO)\n");
+				}
 				method.append("\tpublic ").append(dataType).append(" get").append(firstLetter).append(columnName.substring(1)).append("(){\n");
 				method.append("\t\treturn this.").append(columnName).append(";\n\t}\n");
 				method.append("\tpublic void set").append(firstLetter).append(columnName.substring(1)).append("(");

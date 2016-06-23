@@ -24,6 +24,8 @@ public class TableBaseColumnsUtil {
 		String[] tablesArr = tables.split(StringUtil.SPLIT);
 		
 		for (String table : tablesArr) {
+			table = table.trim();
+			System.out.println(table);
 			StringBuffer sql = new StringBuffer("ALTER TABLE `").append(table.toUpperCase()).append("`");
 			sql.append(" ADD COLUMN `START_DATE`  date NOT NULL,");
 			sql.append(" ADD COLUMN `END_DATE`  date NULL DEFAULT NULL AFTER `START_DATE`,");
@@ -39,7 +41,6 @@ public class TableBaseColumnsUtil {
 			sql.append(" ADD COLUMN `VERSION`  bigint(20) NULL DEFAULT 0");
 			DbUtil.update(sql.toString());
 		}
-		System.out.println("end");
 	}
 //	ADD COLUMN `ATTRIBUTE6`  varchar(240) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' AFTER `ATTRIBUTE5`,
 //	ADD COLUMN `ATTRIBUTE7`  varchar(240) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' AFTER `ATTRIBUTE6`,

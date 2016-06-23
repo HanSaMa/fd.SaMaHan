@@ -1,4 +1,5 @@
 package com.fd.test;
+import com.fd.utils.midea.DbToBeanUtil;
 import com.fd.utils.midea.TableBaseColumnsUtil;
 
 /**
@@ -27,7 +28,9 @@ public class TestMain {
 	public static void main(String[] args) {
 		// TODO 自动生成的方法存根
 		try {
-			TableBaseColumnsUtil.addBaseColumn("TSP_MD_TEST");
+			System.out.println("begin");
+			DbToBeanUtil.dbToBean("TSP_MD_MV_VIP_RELATION", "com.midea.srm.system.entity");
+			System.out.println("end");
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

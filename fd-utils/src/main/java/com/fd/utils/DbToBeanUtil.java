@@ -25,6 +25,7 @@ public class DbToBeanUtil {
 	public static void dbToBean(String tables, String packageStr) throws Exception{
 		String[] tableArr = tables.toLowerCase().split(StringUtil.SPLIT);
 		for (String table : tableArr) {
+			table = table.trim();
 			String className = StringUtil.underlineToCamel(table);
 			className = className.substring(0, 1).toUpperCase() + className.substring(1);
 			String sql = DbUtil.getQueryTableColumnsSQL(table.toUpperCase());
