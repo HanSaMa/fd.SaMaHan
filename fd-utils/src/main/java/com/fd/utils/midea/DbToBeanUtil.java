@@ -64,7 +64,7 @@ public class DbToBeanUtil {
 				//字段属性并添加注解
 				if(column.getIsPrimary()){
 					method.append("\t@MdpId\n");
-					method.append("\t@MdpGeneratedValue(strategy=MdpGenerationType.AUTO)\n");
+					method.append("\t@MdpGeneratedValue(strategy=MdpGenerationType.DISTRIBUTED)\n");
 				}
 				method.append("\tpublic ").append(dataType).append(" get").append(firstLetter).append(columnName.substring(1)).append("(){\n");
 				method.append("\t\treturn this.").append(columnName).append(";\n\t}\n");

@@ -29,7 +29,7 @@ public class TestMain {
 		// TODO 自动生成的方法存根
 		try {
 			System.out.println("begin");
-			DbToBeanUtil.dbToBean("TSP_MD_MV_VIP_RELATION", "com.midea.srm.system.entity");
+			DbToBeanUtil.dbToBean("tsp_bda_vips", "com.midea.cdc.basedata.entity");
 			System.out.println("end");
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
