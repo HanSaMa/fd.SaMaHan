@@ -12,7 +12,7 @@ import com.fd.utils.StringUtil;
 /**
  * 
  * <pre>
- * 数据库连接工具类。
+ * 数据库表转换为实体的工具类。
  * </pre>
  * 
  * @author SaMa.Han guoqiang.han@foxmail.com
@@ -81,6 +81,17 @@ public class DbToBeanUtil {
 			main.append(method).append(toString).append("}");
 			
 			FileUtil.createFileToDesk(className + FileUtil.JAVA_TYPE_FILE, main.toString());
+		}
+	}
+	
+	public static void toElemenStatementt(String tables) throws Exception{
+		String[] tableArr = tables.toLowerCase().split(StringUtil.SPLIT);
+		for (String table : tableArr) {
+			table = table.trim();
+			String className = StringUtil.underlineToCamel(table);
+			className = className.substring(0, 1).toUpperCase() + className.substring(1);
+			System.out.println("@EntityStatement");
+			System.out.println("private IEntityStatement<" + className + "> statement" + className + ";");
 		}
 	}
 }

@@ -29,6 +29,7 @@ import javax.naming.NamingException;
 
 import com.fd.constants.DbConstants;
 import com.fd.constants.JavaConstants;
+import com.fd.constants.X5Constants;
 
 /**
  * 
@@ -734,6 +735,7 @@ public class DbUtil {
 			case "CHAR":
 			case "TEXT":
 				return JavaConstants.STRING_TYPE;
+			case "BIGINT":
 			case "INTEGER":
 			case "ID":
 				return JavaConstants.LONG_TYPE;
@@ -746,8 +748,6 @@ public class DbUtil {
 				return JavaConstants.INTEGER_TYPE;
 			case "BIT":
 				return JavaConstants.BOOLEAN_TYPE;
-			case "BIGINT":
-				return JavaConstants.LONG_TYPE;
 			case "FLOAT":
 				return JavaConstants.FLOAT_TYPE;
 			case "DOUBLE":
@@ -760,6 +760,41 @@ public class DbUtil {
 			case "TIMESTAMP":
 			case "YEAR":
 				return JavaConstants.DATE_TYPE;
+			default:
+				return "";
+		}
+	}
+	
+	public static String getX5MysqlType(String dataType){
+		dataType = dataType.toUpperCase();
+		switch (dataType) {
+			case "VARCHAR":
+			case "CHAR":
+			case "TEXT":
+				return X5Constants.STRING;
+			case "BIGINT":
+			case "INTEGER":
+			case "ID":
+				return X5Constants.LONG;
+			case "BOOLEAN":
+			case "TINYINT":
+			case "SMALLINT":
+			case "MEDIUMINT":
+				return X5Constants.INTEGER;
+			case "BIT":
+				return X5Constants.BOOLEAN;
+			case "FLOAT":
+				return X5Constants.FLOAT;
+			case "DOUBLE":
+				return X5Constants.DOUBLE;
+			case "DECIMAL":
+				return X5Constants.DECIMAL;
+			case "DATE":
+			case "TIME":
+			case "DATETIME":
+			case "TIMESTAMP":
+			case "YEAR":
+				return X5Constants.DATE;
 			default:
 				return "";
 		}

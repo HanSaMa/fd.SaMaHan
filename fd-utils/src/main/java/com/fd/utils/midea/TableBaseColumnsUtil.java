@@ -6,7 +6,7 @@ import com.fd.utils.StringUtil;
 /**
  * 
  * <pre>
- * 数据库基本字段管理。
+ * 为数据库表添加其本字段。
  * </pre>
  * 
  * @author SaMa.Han guoqiang.han@foxmail.com
@@ -38,19 +38,15 @@ public class TableBaseColumnsUtil {
 			for (int i = 0; i < 15; i++) {
 				sql.append(" ADD COLUMN `ATTRIBUTE").append(i + 1).append("`  varchar(240),");
 			}
-			sql.append(" ADD COLUMN `VERSION`  bigint(20) NULL DEFAULT 0");
+			sql.append(" ADD COLUMN `VERSION`  bigint(20) NULL DEFAULT 0,");
+			sql.append(" ADD COLUMN `GLOBAL_ID`  bigint(20) NULL,");
+			sql.append(" ADD COLUMN `GLOBAL_SID`  varchar(100) NULL,");
+			sql.append(" ADD COLUMN `GLOBAL_ORDER`  bigint(20) NULL,");
+			sql.append(" ADD COLUMN `OWNER_ID`  varchar(100) NULL,");
+			sql.append(" ADD COLUMN `OWNER_SID`  varchar(100) NULL,");
+			sql.append(" ADD COLUMN `OWNER_ORDER`  bigint(20) NULL");
+			sql.append(" ADD COLUMN `DS_SID`  varchar(100) NULL");
 			DbUtil.update(sql.toString());
 		}
 	}
-//	ADD COLUMN `ATTRIBUTE6`  varchar(240) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' AFTER `ATTRIBUTE5`,
-//	ADD COLUMN `ATTRIBUTE7`  varchar(240) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' AFTER `ATTRIBUTE6`,
-//	ADD COLUMN `ATTRIBUTE8`  varchar(240) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' AFTER `ATTRIBUTE7`,
-//	ADD COLUMN `ATTRIBUTE9`  varchar(240) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' AFTER `ATTRIBUTE8`,
-//	ADD COLUMN `ATTRIBUTE10`  varchar(240) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' AFTER `ATTRIBUTE9`,
-//	ADD COLUMN `ATTRIBUTE11`  varchar(240) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' AFTER `ATTRIBUTE10`,
-//	ADD COLUMN `ATTRIBUTE12`  varchar(240) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' AFTER `ATTRIBUTE11`,
-//	ADD COLUMN `ATTRIBUTE13`  varchar(240) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' AFTER `ATTRIBUTE12`,
-//	ADD COLUMN `ATTRIBUTE14`  varchar(240) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' AFTER `ATTRIBUTE13`,
-//	ADD COLUMN `ATTRIBUTE15`  varchar(240) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' AFTER `ATTRIBUTE14`,
-//	ADD COLUMN `VERSION`  bigint(20) NULL DEFAULT 0 AFTER `ATTRIBUTE15`;
 }
