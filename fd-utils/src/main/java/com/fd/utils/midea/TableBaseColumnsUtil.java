@@ -44,7 +44,7 @@ public class TableBaseColumnsUtil {
 			sql.append(" ADD COLUMN `GLOBAL_ORDER`  bigint(20) NULL,");
 			sql.append(" ADD COLUMN `OWNER_ID`  varchar(100) NULL,");
 			sql.append(" ADD COLUMN `OWNER_SID`  varchar(100) NULL,");
-			sql.append(" ADD COLUMN `OWNER_ORDER`  bigint(20) NULL");
+			sql.append(" ADD COLUMN `OWNER_ORDER`  bigint(20) NULL,");
 			sql.append(" ADD COLUMN `DS_SID`  varchar(100) NULL");
 			DbUtil.update(sql.toString());
 		}

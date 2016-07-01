@@ -44,7 +44,7 @@ public class DbToX5Util {
 					main.append(columnName).append("\">\n");
 				}
 				String columnType = DbUtil.getX5MysqlType(column.getDataType());
-				clmns.append("\t<column lable=\"").append(column.getDescription()).append("\" name=\"").append(columnName);
+				clmns.append("\t<column label=\"").append(column.getDescription()).append("\" name=\"").append(columnName);
 				clmns.append("\" type=\"").append(columnType).append("\"/>\n");
 			}
 			main.append(clmns);
@@ -82,5 +82,32 @@ public class DbToX5Util {
 			System.out.println(main.toString());
 		}
 	}
-
+	
+	public static void pringX5Input(String tables) throws Exception {
+		String[] tablesArr = tables.split(StringUtil.SPLIT);
+		for (String table : tablesArr) {
+			table = table.trim();
+			System.out.println(table);
+			StringBuffer main = new StringBuffer();
+			String propertyName = StringUtil.underlineToCamel(table);
+			String sql = DbUtil.getQueryTableColumnsSQL(table.toUpperCase());
+			List<TableColumns> columns = DbUtil.queryPlural(TableColumns.class, sql);
+			for (TableColumns column : columns) {
+				String columnName = StringUtil.underlineToCamel(column.getColumnName().toLowerCase());
+				
+				if(null != column.getDescription() && !column.getDescription().isEmpty()){
+					main.append("<div component=\"$UI/system/components/justep/row/row\" class=\"x-row\">\n");
+					main.append("\t<div class=\"x-col x-col-10\"/>\n");
+					main.append("\t<div class=\"x-col x-col-20 x-col-bottom\">\n");
+					main.append("\t\t<label class=\"pull-right\">\n");
+					main.append("\t\t\t<span class=\"cred\">*</span><![CDATA[").append(column.getDescription()).append("：]]> \n");
+					main.append("\t\t</label>\n\t</div>\n\t<div class=\"x-col x-col-20\">\n\t\t<input component=\"$UI/system/components/justep/input/input\" class=\"form-control input-sm\"");
+					main.append(" placeHolder=\"\" bind-ref='$model.").append(propertyName).append("Data.ref(\"").append(columnName).append("\")'/> ");
+					main.append("\n\t</div> \n\t<div class=\"x-col\"/>\n </div>\n\n");
+				}
+			}
+			main.append("<!------------------------------------------------>\n");
+			System.out.println(main.toString());
+		}
+	}
 }

@@ -6,7 +6,20 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import javax.swing.filechooser.FileSystemView;
-
+/**
+ * 
+ * <pre>
+ * 。
+ * </pre>
+ * 
+ * @author SaMa.Han guoqiang.han@foxmail.com
+ * @version 1.00.00
+ * 
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  	修改日期:     修改内容:
+ * </pre>
+ */
 public class FileUtil {
 	
 	public static final String JAVA_TYPE_FILE = ".java";

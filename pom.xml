@@ -6,5 +6,6 @@
   <packaging>pom</packaging>
   <modules>
   	<module>fd-utils</module>
+  	<module>fd-calc</module>
   </modules>
 </project>

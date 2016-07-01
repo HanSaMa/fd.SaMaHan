@@ -39,7 +39,7 @@ public class DbToBeanUtil {
 			main.append("import javax.persistence.GeneratedValue;\n");
 			main.append("import javax.persistence.Column;\n");
 			main.append("\n/**\n *\n * <pre>\n * .\n * </pre>\n *\n * @autor SaMa.Han guoqiang.han@foxmail.com\n");
-			main.append(" * @version 1.00.00\n *\n * <pre>\n * 修改记录\n * \t修改后版本：\t修改人：\t修改日期：\t修改内容： \n");
+			main.append(" * @version 1.00.00\n *\n * <pre>\n * 修改记录\n * 修改后版本：\t修改人：\t修改日期：\t修改内容： \n");
 			main.append(" * </pre>\n */\n@Entity\n@Table(name=\"").append(table.toUpperCase()).append("\")\n");
 			main.append("public class ").append(className).append(" implements Serializable {\n");
 			main.append("\tprivate static final long serialVersionUID = ").append(new Date().getTime()).append("L;\n\n");
