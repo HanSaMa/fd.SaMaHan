@@ -96,12 +96,13 @@ public class DbToX5Util {
 				String columnName = StringUtil.underlineToCamel(column.getColumnName().toLowerCase());
 				
 				if(null != column.getDescription() && !column.getDescription().isEmpty()){
-					main.append("<div component=\"$UI/system/components/justep/row/row\" class=\"x-row\">\n");
+					main.append("<div component=\"$UI/system/components/justep/row/row\" class=\"x-row\"  xid=\"").append(propertyName).append("Data-").append(columnName).append("\">\n");
 					main.append("\t<div class=\"x-col x-col-10\"/>\n");
 					main.append("\t<div class=\"x-col x-col-20 x-col-bottom\">\n");
 					main.append("\t\t<label class=\"pull-right\">\n");
 					main.append("\t\t\t<span class=\"cred\">*</span><![CDATA[").append(column.getDescription()).append("：]]> \n");
 					main.append("\t\t</label>\n\t</div>\n\t<div class=\"x-col x-col-20\">\n\t\t<input component=\"$UI/system/components/justep/input/input\" class=\"form-control input-sm\"");
+					main.append("data=\"").append(propertyName).append("Data\" ");
 					main.append(" placeHolder=\"\" bind-ref='$model.").append(propertyName).append("Data.ref(\"").append(columnName).append("\")'/> ");
 					main.append("\n\t</div> \n\t<div class=\"x-col\"/>\n </div>\n\n");
 				}
