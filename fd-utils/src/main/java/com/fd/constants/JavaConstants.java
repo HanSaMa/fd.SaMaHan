@@ -38,4 +38,5 @@ public class JavaConstants {
 	public static final String BYTE_ARRAY = "java.lang.byte[]";
 	public static final String BIGINTEGER_TYPE = "java.math.BigInteger";
 	public static final String BIGDECIMAL_TYPE = "java.math.BigDecimal";
+	public static final String DATETIME_TYPE = "java.sql.Timestamp";
 }
