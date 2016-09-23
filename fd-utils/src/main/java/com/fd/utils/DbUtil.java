@@ -688,7 +688,7 @@ public class DbUtil {
 		if (DbConstants.SQL_SERVER_07_OR_2000_DRIVER.equals(driver)) {
 			
 		} else if (DbConstants.SQL_SERVER_2005_OR_2008_DRIVER.equals(driver)) {
-			
+//			sb.append(b)
 		} else if (DbConstants.MYSQL_DRIVER.equals(driver)) {
 			sb.append("select t.column_name, t.data_type, case t.column_key when 'PRI' then true else false end as is_primary, t.column_comment as description ");
 			sb.append("from information_schema.columns t where t.table_schema = database()");
@@ -756,10 +756,11 @@ public class DbUtil {
 				return JavaConstants.BIGDECIMAL_TYPE;
 			case "DATE":
 			case "TIME":
-			case "DATETIME":
-			case "TIMESTAMP":
 			case "YEAR":
 				return JavaConstants.DATE_TYPE;
+			case "DATETIME":
+			case "TIMESTAMP":
+				return JavaConstants.DATETIME_TYPE;
 			default:
 				return "";
 		}
