@@ -1,5 +1,4 @@
 package com.fd.test;
-import com.fd.utils.StringUtil;
 import com.fd.utils.midea.DbToBeanUtil;
 import com.fd.utils.midea.DbToX5Util;
 import com.fd.utils.midea.TableBaseColumnsUtil;
@@ -31,12 +30,13 @@ public class TestMain {
 		// TODO 自动生成的方法存根
 		try {
 			System.out.println("begin");
-//			TableBaseColumnsUtil.addBaseColumn("tsp_bda_vip_users");
-			DbToBeanUtil.dbToBean("tsp_bda_vip_users", "com.midea.cdc.basedata.entity");
-//			DbToX5Util.printX5Data("tsp_bda_mv_att_file, tsp_bda_mv_att_template, tsp_bda_mv_bc_business, tsp_bda_mv_bc_external, tsp_bda_mv_bc_financial, tsp_bda_mv_bc_history, tsp_bda_mv_bc_honor, tsp_bda_mv_bc_informatization, tsp_bda_mv_bc_investment, tsp_bda_mv_bc_logistics, tsp_bda_mv_bc_logsup, tsp_bda_mv_bc_transportation, tsp_bda_mv_bi_address, tsp_bda_mv_bi_bank, tsp_bda_mv_bi_company, tsp_bda_mv_bi_linkman, tsp_bda_mv_cb_business_info, tsp_bda_mv_cb_holders_info, tsp_bda_mv_cb_relation_info, tsp_bda_mv_cr_check_divice, tsp_bda_mv_cr_equipment, tsp_bda_mv_cr_mold_ability, tsp_bda_mv_cr_pro_equipment, tsp_bda_mv_cr_pro_output, tsp_bda_mv_dd_change_control, tsp_bda_mv_dd_development, tsp_bda_mv_dd_info, tsp_bda_mv_dd_technical_norms, tsp_bda_mv_hr_education, tsp_bda_mv_hr_frontline, tsp_bda_mv_hr_management, tsp_bda_mv_hr_professional, tsp_bda_mv_qa_control, tsp_bda_mv_qa_incoming, tsp_bda_mv_qa_unqualified, tsp_bda_mv_vip_relation");
+			String tables = "tsp_sou_tenders";
+//			TableBaseColumnsUtil.addBaseColumn(tables);
+			DbToBeanUtil.dbToBean(tables, "com.midea.scc.sourcing.entity");
+			DbToX5Util.printX5Data(tables.toLowerCase());
 //			DbToBeanUtil.toElemenStatementt("tsp_bda_mv_att_file, tsp_bda_mv_att_template, tsp_bda_mv_bc_business, tsp_bda_mv_bc_external, tsp_bda_mv_bc_financial, tsp_bda_mv_bc_history, tsp_bda_mv_bc_honor, tsp_bda_mv_bc_informatization, tsp_bda_mv_bc_investment, tsp_bda_mv_bc_logistics, tsp_bda_mv_bc_logsup, tsp_bda_mv_bc_transportation, tsp_bda_mv_bi_address, tsp_bda_mv_bi_bank, tsp_bda_mv_bi_company, tsp_bda_mv_bi_linkman, tsp_bda_mv_cb_business_info, tsp_bda_mv_cb_holders_info, tsp_bda_mv_cb_relation_info, tsp_bda_mv_cr_check_divice, tsp_bda_mv_cr_equipment, tsp_bda_mv_cr_mold_ability, tsp_bda_mv_cr_pro_equipment, tsp_bda_mv_cr_pro_output, tsp_bda_mv_dd_change_control, tsp_bda_mv_dd_development, tsp_bda_mv_dd_info, tsp_bda_mv_dd_technical_norms, tsp_bda_mv_hr_education, tsp_bda_mv_hr_frontline, tsp_bda_mv_hr_management, tsp_bda_mv_hr_professional, tsp_bda_mv_qa_control, tsp_bda_mv_qa_incoming, tsp_bda_mv_qa_unqualified, tsp_bda_mv_vip_relation");
-//			DbToX5Util.printX5Grid("tsp_bda_mv_att_file, tsp_bda_mv_att_template, tsp_bda_mv_bc_business, tsp_bda_mv_bc_external, tsp_bda_mv_bc_financial, tsp_bda_mv_bc_history, tsp_bda_mv_bc_honor, tsp_bda_mv_bc_informatization, tsp_bda_mv_bc_investment, tsp_bda_mv_bc_logistics, tsp_bda_mv_bc_logsup, tsp_bda_mv_bc_transportation, tsp_bda_mv_bi_address, tsp_bda_mv_bi_bank, tsp_bda_mv_bi_company, tsp_bda_mv_bi_linkman, tsp_bda_mv_cb_business_info, tsp_bda_mv_cb_holders_info, tsp_bda_mv_cb_relation_info, tsp_bda_mv_cr_check_divice, tsp_bda_mv_cr_equipment, tsp_bda_mv_cr_mold_ability, tsp_bda_mv_cr_pro_equipment, tsp_bda_mv_cr_pro_output, tsp_bda_mv_dd_change_control, tsp_bda_mv_dd_development, tsp_bda_mv_dd_info, tsp_bda_mv_dd_technical_norms, tsp_bda_mv_hr_education, tsp_bda_mv_hr_frontline, tsp_bda_mv_hr_management, tsp_bda_mv_hr_professional, tsp_bda_mv_qa_control, tsp_bda_mv_qa_incoming, tsp_bda_mv_qa_unqualified, tsp_bda_mv_vip_relation");
-//			DbToX5Util.pringX5Input("tsp_bda_mv_bc_external");
+//			DbToX5Util.printX5Grid("TSP_BDA_VB_COMPANYS");
+//			DbToX5Util.pringX5Input("tsp_bda_vb_companys,tsp_bda_vb_linkmans");
 
 //			com.fd.utils.DbToBeanUtil.dbToBean("fd_calc_users", "com.fd.calc.entity");
 			System.out.println("end");

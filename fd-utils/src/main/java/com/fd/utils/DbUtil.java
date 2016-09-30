@@ -792,10 +792,11 @@ public class DbUtil {
 				return X5Constants.DECIMAL;
 			case "DATE":
 			case "TIME":
-			case "DATETIME":
-			case "TIMESTAMP":
 			case "YEAR":
 				return X5Constants.DATE;
+			case "DATETIME":
+			case "TIMESTAMP":
+				return X5Constants.DATETIME;
 			default:
 				return "";
 		}

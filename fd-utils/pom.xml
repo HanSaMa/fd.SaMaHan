@@ -33,6 +33,11 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.35</version>
 		</dependency>
+		<dependency>
+			<groupId>com.hynnet</groupId>
+			<artifactId>sqljdbc4-chs</artifactId>
+			<version>4.0.2206.100</version>
+		</dependency>
 		
 		<!-- poi -->
 		<dependency>
