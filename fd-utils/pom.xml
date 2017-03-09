@@ -9,7 +9,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.fd</groupId>
-	<artifactId>fd-utils</artifactId>
+	<artifactId>fd-utils</artifactId>  
 	<version>0.0.1-SNAPSHOT</version>
 	<name>fd-utils</name>
 	<properties>
@@ -23,7 +23,7 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- db driver 数据库驱动 -->
-		<dependency>
+		<dependency> 
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc14</artifactId>
 			<version>10.2.0.4.0</version>
