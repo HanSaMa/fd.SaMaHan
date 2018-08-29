@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+	<display-name>美易达</display-name>
+	<servlet>
+		<servlet-name>default</servlet-name>
+		<servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>0</param-value>
+		</init-param>
+		<init-param>
+			<param-name>listings</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:/spring/spring-*.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:log4j.properties</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- 配置 Shiro 的 Filter -->
+	<!--<filter>-->
+		<!--<description>shiro 权限拦截</description>-->
+		<!--<filter-name>shiroFilter</filter-name>-->
+		<!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
+		<!--<init-param>-->
+			<!--<param-name>targetFilterLifecycle</param-name>-->
+			<!--<param-value>true</param-value>-->
+		<!--</init-param>-->
+	<!--</filter>-->
+	<!--<filter-mapping>-->
+		<!--<filter-name>shiroFilter</filter-name>-->
+		<!--<url-pattern>/*</url-pattern>-->
+	<!--</filter-mapping>-->
+
+	<servlet>
+		<servlet-name>fd-reptile</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring-context.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>fd-reptile</servlet-name>
+		<!-- 默认匹配所有的请求 -->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- druid 配置 开始 -->
+	<!-- Druid,监控数据库,以及WEB访问连接信息 -->
+	<!-- 配置好后访问 http://ip：port/projectName/druid/index.html -->
+	<!--<filter>-->
+		<!--<filter-name>DruidWebStatFilter</filter-name>-->
+		<!--<filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>-->
+		<!--<init-param>-->
+			<!--<param-name>exclusions</param-name>-->
+			<!--<param-value>*.js,*.gif,*.jpg,*.png,*.ico,*.css,*.ico,*.jsp,*.eot,*.woff,/druid/*,/download/*</param-value>-->
+		<!--</init-param>-->
+		<!--&lt;!&ndash; 监控单个url调用的sql列表 &ndash;&gt;-->
+		<!--<init-param>-->
+			<!--<param-name>profileEnable</param-name>-->
+			<!--<param-value>true</param-value>-->
+		<!--</init-param>-->
+		<!--&lt;!&ndash; 可以关闭session统计功能 &ndash;&gt;-->
+		<!--&lt;!&ndash; <init-param> <param-name>sessionStatEnable</param-name> <param-value>false</param-value> </init-param> &ndash;&gt;-->
+	<!--</filter>-->
+	<!--<filter-mapping>-->
+		<!--<filter-name>DruidWebStatFilter</filter-name>-->
+		<!--<url-pattern>/*</url-pattern>-->
+	<!--</filter-mapping>-->
+	<!-- 配置 Druid 监控信息显示页面 该配置可以访问监控界面，配置好后，访问http://ip地址:端口号/项目名/druid/index.html -->
+	<!--<servlet>-->
+		<!--<servlet-name>DruidStatView</servlet-name>-->
+		<!--<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>-->
+		<!--<init-param>-->
+			<!--&lt;!&ndash; 允许清空统计数据 &ndash;&gt;-->
+			<!--<param-name>resetEnable</param-name>-->
+			<!--<param-value>true</param-value>-->
+		<!--</init-param>-->
+		<!--&lt;!&ndash; ip过滤规则 （1）deny优先于allow，如果在deny列表中，就算在allow列表中，也会被拒绝。 （2）如果allow没有配置或者为空，则允许所有访问 ip配置格式 <IP> 或者 <IP>/<SUB_NET_MASK_size> 其中 128.242.127.1/24 24表示，前面24位是子网掩码，比对的时候，前面24位相同就匹配。 不支持IPV6 由于匹配规则不支持IPV6，配置了allow或者deny之后，会导致IPV6无法访问。 &ndash;&gt;-->
+		<!--&lt;!&ndash; <init-param> 访问IP白名单 <param-name>allow</param-name> <param-value>192.168.1.253</param-value> </init-param> <init-param> 访问IP黑名单 <param-name>deny</param-name> <param-value>192.168.1.252</param-value> </init-param> &ndash;&gt;-->
+		<!--<init-param>-->
+			<!--&lt;!&ndash; 用户名 &ndash;&gt;-->
+			<!--<param-name>loginUsername</param-name>-->
+			<!--<param-value>druid</param-value>-->
+		<!--</init-param>-->
+		<!--<init-param>-->
+			<!--&lt;!&ndash; 密码 &ndash;&gt;-->
+			<!--<param-name>loginPassword</param-name>-->
+			<!--<param-value>druid</param-value>-->
+		<!--</init-param>-->
+	<!--</servlet>-->
+	<!--<servlet-mapping>-->
+		<!--<servlet-name>DruidStatView</servlet-name>-->
+		<!--<url-pattern>/druid/*</url-pattern>-->
+	<!--</servlet-mapping>-->
+	<!-- druid 配置 结束 -->
+
+
+	<welcome-file-list><!--指定欢迎页面 -->
+		<welcome-file>login.html</welcome-file>
+	</welcome-file-list>
+	<error-page> <!--当系统出现404错误，跳转到页面nopage.html -->
+		<error-code>404</error-code>
+		<location>/nopage.html</location>
+	</error-page>
+	<!--当系统出现java.lang.NullPointerException，跳转到页面error.html -->
+	<error-page>
+		<exception-type>java.lang.NullPointerException</exception-type>
+		<location>/error.html</location>
+	</error-page>
+	<session-config><!--会话超时配置，单位分钟 -->
+		<session-timeout>360</session-timeout>
+	</session-config>
+</web-app>
